@@ -1,4 +1,5 @@
 const ctx = document.getElementById('abacusGraph').getContext('2d');
+const monthlyIncomes = JSON.parse(document.getElementById('monthly-incomes').textContent);
 
 // Custom plugin to draw background bars
 const backgroundPlugin = {
@@ -21,7 +22,7 @@ const data = {
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [{
         label: 'Monthly Analytics',
-        data: [320, 290, 30, 50, 20, 230, 120, 190, 30, 50, 20, 30],
+        data: monthlyIncomes,
         backgroundColor: '#1B59F8', // Solid blue color
         borderColor: '#1B59F8',
         borderWidth: 1,
