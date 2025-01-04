@@ -21,17 +21,20 @@
         <i class="dropdown-icon fa fa-chevron-down"></i> 
      </div>
     <div class="total-row-current-page-container">
-        <div class="current-page">
+        <div class="current-page" id="current-page2">
             <img src="../static/admin_img/student_management_img/course_enroll_img/home_icon.png" alt="" class="home-icon">
-            <img src="../static/admin_img/student_management_img/course_enroll_img/page_arrow.png" alt="" class="page-arrow">
-            <p class="current-page-info" id="studentManagement">Course Name</p>
-            <img src="../static/admin_img/student_management_img/course_enroll_img/page_arrow.png" alt="" class="page-arrow">
-            <p class="current-page-info">Quiz</p>
-            <img src="../static/admin_img/student_management_img/course_enroll_img/page_arrow.png" alt="" class="page-arrow">
-            <p class="current-page-info">Quiz 1</p>
-            <img src="../static/admin_img/student_management_img/course_enroll_img/page_arrow.png" alt="" class="page-arrow">
+            
+            {% for item in breadcrumb2 %}
+                <img src="../static/admin_img/student_management_img/course_enroll_img/page_arrow.png" alt="" class="page-arrow">
+                {% if forloop.first %}
+                    <!-- Here the Course Name is stored from the breadcrumb -->
+                    <p class="current-page-info" id="studentManagement">{{ item }}</p>
+                {% else %}
+                    <p class="current-page-info">{{ item }}</p>
+                {% endif %}
+            {% endfor %}
         </div>
-        <div class="total-rows" id="totalCourses">Total Course Enrollments: 0</div>
+        <div class="total-rows" id="totalCourses">Total Course Enrollments: {{ total_course_enrollments2 }}</div>
     </div>
 
     <div class="referralTable-container">
@@ -64,6 +67,10 @@
         <img id="nextBtn2" class="next-previous-button" src="{% static 'admin_img/student_management_img/course_enroll_img/Arrow_right.png' %}" alt="Next" onclick="nextPage2()">
     </div>
     <!-- Pagination Controls ENDS -->
+
+    <!-- Hidden courses data from Django to be accessed in JavaScript -->
+    <div id="courses-data2" style="display: none;">{{ courses|safe }}</div>
+
 
     <script src="{% static 'js/admin_marketing_promotion_view_bills.js' %}">
     </script>
