@@ -16,55 +16,55 @@
 
 <!-- Container that contains "statics boxes" STARTS-->               
 <div class="earning-enroll-container">
+    <!-- Zeeshan: The following could be rendered using loops id we have a common stats data. -->
     <div class="statics-box  total-enroll-count">
         <div class="statics-box-heading">
         <h2>Total enrollment Count</h2>
-        <p><span>900 </span>users
-        </p></div>
+        <p><span>{{ total_enrollment_count }}</span> users</p></div>
         <img src="../static/admin_img/dashborad_img/total_enroll.png" alt="">
     </div>
     <div class="statics-box total-earning">
         <div class="statics-box-heading">
             <h2>Total Earnings</h2>
-            <p><span>₹430.00</span>
+            <p><span>₹ {{ total_earnings }}</span>
             </p></div>
             <img src="../static/admin_img/dashborad_img/total_earnings.png" alt="">
         </div>
     <div class="statics-box total-payout">
             <div class="statics-box-heading">
                 <h2>Total Payout</h2>
-                <p><span>$768</span></p></div>
+                <p><span>₹ {{ total_payout }}</span></p></div>
                 <img src="../static/admin_img/dashborad_img/total_payout.png" alt="">
         </div>
     <div class="statics-box total-net-profit">
                 <div class="statics-box-heading">
                     <h2>Total Net Profit</h2>
-                    <p><span>$768</span></p></div>
+                    <p><span>₹ {{ total_net_profit }}</span></p></div>
                     <img src="../static/admin_img/dashborad_img/total_payout.png" alt="">
         </div>
     <div class="statics-box this-month-count">
                     <div class="statics-box-heading">
                         <h2>This month count</h2>
-                        <p><span>768 </span>users
+                        <p><span>{{ this_month_count }}</span> users
                         </p></div>
                     <img src="../static/admin_img/dashborad_img/this_month_count.png" alt="">
         </div>
     <div class="statics-box this-month-earning">
         <div class="statics-box-heading">
             <h2>This month earnings</h2>
-            <p><span>₹1290</span></p></div>
+            <p><span>₹ {{ this_month_earning }}</span></p></div>
         <img src="../static/admin_img/dashborad_img/this_month_earnings.png" alt="">
     </div>
     <div class="statics-box this-month-payout">
         <div class="statics-box-heading">
             <h2>This month payout</h2>
-            <p><span>₹1290</span></p></div>
+            <p><span>₹ {{ this_month_payout }}</span></p></div>
         <img src="../static/admin_img/dashborad_img/this-month-payout.png" alt="">
     </div>
     <div class="statics-box this-month-net-profit">
         <div class="statics-box-heading">
             <h2>This month net profit</h2>
-            <p><span>₹430.00</span></p></div>
+            <p><span>₹ {{ this_month_net_profit }}</span></p></div>
         <img src="../static/admin_img/dashborad_img/total_earnings.png" alt="">
     </div>
 </div>
@@ -93,13 +93,19 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>1.</td><td>#16879</td><td>John dye</td><td>Mar,2023</td><td>Artificial intelligence</td><td>500 users</td><td>$50</td><td>$35</td><td><p class="green-status">Pay</p></td></tr>
-                <tr><td>2.</td><td>#16879</td><td>John dye</td><td>Mar,2023</td><td>Artificial intelligence</td><td>500 users</td><td>$50</td><td>$35</td><td><p class="green-status">Pay</p></td></tr>
-                <tr><td>3.</td><td>#16879</td><td>John dye</td><td>Mar,2023</td><td>Artificial intelligence</td><td>500 users</td><td>$50</td><td>$35</td><td><p class="green-status">Pay</p></td></tr>
-                <tr><td>4.</td><td>#16879</td><td>John dye</td><td>Mar,2023</td><td>Artificial intelligence</td><td>500 users</td><td>$50</td><td>$35</td><td><p class="green-status">Pay</p></td></tr>
-                <tr><td>5.</td><td>#16879</td><td>John dye</td><td>Mar,2023</td><td>Artificial intelligence</td><td>500 users</td><td>$50</td><td>$35</td><td><p class="green-status">Pay</p></td></tr>
-                <tr><td>6.</td><td>#16879</td><td>John dye</td><td>Mar,2023</td><td>Artificial intelligence</td><td>500 users</td><td>$50</td><td>$35</td><td><p class="green-status">Pay</p></td></tr>
-              
+                {% for payment in payments %}
+                <tr>
+                    <td>{{ forloop.counter }}.</td>
+                    <td>{{ payment.invoice_no }}</td>
+                    <td>{{ payment.name }}</td>
+                    <td>{{ payment.month }}</td>
+                    <td>{{ payment.course_name }}</td>
+                    <td>{{ payment.no_of_enrollments }}</td>
+                    <td>{{ payment.per_share }}</td>
+                    <td>{{ payment.amount }}</td>
+                    <td><p class="green-status">{{ payment.pay_status }}</p></td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
         </div>
@@ -120,11 +126,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>1.</td><td>John Dye</td><td>4</td><td>500 users</td><td>$50</td><td>$35</td><td>$50</td></tr>
-                    <tr><td>2.</td><td>John Dye</td><td>4</td><td>500 users</td><td>$50</td><td>$35</td><td>$50</td></tr>
-                    <tr><td>3.</td><td>John Dye</td><td>8</td><td>500 users</td><td>$50</td><td>$35</td><td>$50</td></tr>
-                    <tr><td>4.</td><td>John Dye</td><td>5</td><td>500 users</td><td>$50</td><td>$35</td><td>$50</td></tr>
-                    <tr><td>5.</td><td>John Dye</td><td>6</td><td>500 users</td><td>$50</td><td>$35</td><td>$50</td></tr>    
+                    {% for earning in provider_earnings %}
+                    <tr>
+                        <td>{{ forloop.counter }}.</td>
+                        <td>{{ earning.provider_name }}</td>
+                        <td>{{ earning.no_of_courses }}</td>
+                        <td>{{ earning.no_of_enrollments }}</td>
+                        <td>{{ earning.total_earnings }}</td>
+                        <td>{{ earning.total_commission }}</td>
+                        <td>{{ earning.net_profit }}</td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -146,11 +158,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr onclick="goToProviderManagement()"><td>1.</td><td>John Dye</td><td>Artificial intelligence</td><td>4.5</td><td>500 users</td><td>$50</td><td>$35</td><td>$50</td></tr>
-                    <tr onclick="goToProviderManagement()"><td>2.</td><td>John Dye</td><td>Artificial intelligence</td><td>4.8</td><td>500 users</td><td>$50</td><td>$35</td><td>$50</td></tr>
-                    <tr onclick="goToProviderManagement()"><td>3.</td><td>John Dye</td><td>Artificial intelligence</td><td>4.0</td><td>500 users</td><td>$50</td><td>$35</td><td>$50</td></tr>
-                    <tr onclick="goToProviderManagement()"><td>4.</td><td>John Dye</td><td>Artificial intelligence</td><td>5.0</td><td>500 users</td><td>$50</td><td>$35</td><td>$50</td></tr>
-                    <tr onclick="goToProviderManagement()"><td>5.</td><td>John Dye</td><td>Artificial intelligence</td><td>4.1</td><td>500 users</td><td>$50</td><td>$35</td><td>$50</td></tr>    
+                    {% for course in course_earnings %}
+                    <tr onclick="goToProviderManagement('{{ course.provider_id }}')">
+                        <td>{{ forloop.counter }}.</td>
+                        <td>{{ course.provider_name }}</td>
+                        <td>{{ course.course_name }}</td>
+                        <td>{{ course.rating }}</td>
+                        <td>{{ course.no_of_enrollments }}</td>
+                        <td>{{ course.earnings }}</td>
+                        <td>{{ course.commission }}</td>
+                        <td>{{ course.net_profit }}</td>
+                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
