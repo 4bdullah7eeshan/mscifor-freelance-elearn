@@ -67,6 +67,8 @@
 </div>
 <!-- Pagination Controls ENDS -->
 
+<!-- Hidden courses data from Django to be accessed in JavaScript -->
+<div id="courses-data" style="display: none;">{{ courses|safe }}</div>
 
 <!-- scripts -->
 <script src="{% static 'js/admin_marketing_promotion_referal.js' %}">

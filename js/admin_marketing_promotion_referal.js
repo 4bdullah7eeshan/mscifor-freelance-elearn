@@ -1,18 +1,7 @@
-const courses = [];
+const courses = JSON.parse(document.getElementById('courses-data').textContent);
+const originalCourses = [...courses];
 const rowsPerPage = 10;
 let currentPage = 1;
-const originalCourses = [];
-const apiUrl = ""; // Zeeshan: Place apiUrl here
-
-async function fetchCourses() {
-    // Zeeshan: Handle errors later!
-    const response = await fetch(apiUrl, {mode: 'cors'});
-    courses = await response.json();
-    originalCourses = [...courses];
-    renderTable();
-}
-
-// Zeeshan: No changes from here onwards except calling the above fetch function at the end.
 
 function renderTable() {
     const tableBody = document.querySelector('#referralTable tbody');
@@ -105,10 +94,10 @@ function sortTable() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    fetchCourses();
+    renderTable();
 });
 
 window.onload = function() {
-    fetchCourses();
+    renderTable();
 };
 
