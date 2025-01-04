@@ -27,15 +27,19 @@
 <div class="total-row-current-page-container">
     <div class="current-page">
         <img src="../static/admin_img/student_management_img/course_enroll_img/home_icon.png" alt="" class="home-icon">
-        <img src="../static/admin_img/student_management_img/course_enroll_img/page_arrow.png" alt="" class="page-arrow">
-        <p class="current-page-info" id="studentManagement">Course Name</p>
-        <img src="../static/admin_img/student_management_img/course_enroll_img/page_arrow.png" alt="" class="page-arrow">
-        <p class="current-page-info">Quiz</p>
-        <img src="../static/admin_img/student_management_img/course_enroll_img/page_arrow.png" alt="" class="page-arrow">
-        <p class="current-page-info">Quiz 1</p>
-        <img src="../static/admin_img/student_management_img/course_enroll_img/page_arrow.png" alt="" class="page-arrow">
+        
+        {% for item in breadcrumb %}
+            <img src="../static/admin_img/student_management_img/course_enroll_img/page_arrow.png" alt="" class="page-arrow">
+            {% if forloop.first %}
+                <!-- Here the Course Name is stored from the breadcrumb -->
+                <p class="current-page-info" id="studentManagement">{{ item }}</p>
+            {% else %}
+                <p class="current-page-info">{{ item }}</p>
+            {% endif %}
+        {% endfor %}
     </div>
-    <div class="total-rows" id="totalCourses">Total Course Enrollments: 0</div>
+
+    <div class="total-rows" id="totalCourses">Total Course Enrollments: {{ total_course_enrollments }}</div>
 </div>
 
 <div class="referralTable-container">
