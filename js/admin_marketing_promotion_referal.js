@@ -1,32 +1,18 @@
-const courses = [
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4584', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4384', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4284', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4184', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4564', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4384', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-    {name: 'John Dye', mail: 'John56@gmail.com', referral_code:'#4684', referral_count: '300',bonus: '$250'},
-];
-
+const courses = [];
 const rowsPerPage = 10;
 let currentPage = 1;
-const originalCourses = [...courses]; 
+const originalCourses = [];
+const apiUrl = ""; // Zeeshan: Place apiUrl here
+
+async function fetchCourses() {
+    // Zeeshan: Handle errors later!
+    const response = await fetch(apiUrl, {mode: 'cors'});
+    courses = await response.json();
+    originalCourses = [...courses];
+    renderTable();
+}
+
+// Zeeshan: No changes from here onwards except calling the above fetch function at the end.
 
 function renderTable() {
     const tableBody = document.querySelector('#referralTable tbody');
@@ -119,10 +105,10 @@ function sortTable() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    renderTable();
+    fetchCourses();
 });
 
 window.onload = function() {
-    renderTable();
+    fetchCourses();
 };
 
